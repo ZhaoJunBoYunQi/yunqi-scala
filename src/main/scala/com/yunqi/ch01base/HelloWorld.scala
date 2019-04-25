@@ -52,7 +52,7 @@ object HelloWorld {
 
     //for 表达式 for 中 <-, Map 中 ->
 
-    for (i <- 1 to 3; j <- 1 to 3) {
+    /*for (i <- 1 to 3; j <- 1 to 3) {
       println(i*10 + j)//推导式
     }
     for (i <- 1 to 3; j <- 1 to 3 if i != j) {
@@ -63,11 +63,30 @@ object HelloWorld {
     }
     val res = for (i <- 1 to 3)
       yield i %2;
-      println(res)// Vector(1,0,1)使用yield关键字可以生成新新的集合
+      println(res)// Vector(1,0,1)使用yield关键字可以生成新新的集合*/
 
+    //函数 scala 通过 = 判断类型，如果需要多个表达式的话可以用{}代替可以把return当做break
+    def abs(x: Double) = if (x > 0) x else -x;
+    //递归函数，一定要指明返回类型
+    def recursiveFac(n: Int): Int =
+      if (n > 0) 1 else n * recursiveFac(n -1);
+    //函数参数默认值,如果没有传入值默认为[str]
+    def default(str: String, left: String = "[", right: String = "]") =
+      left + str + right;
+    println(default("hello"));
+    println(default("hello", "<<<", ">>>"));
+    //也可以自己指定参数名
+    println(default(left = "<<<", str = "hello", right = ">>>"));
+    //可变参数，通过* 指明所有参数都会转化为一个seq序列
+    def sum(args: Int*) = {
+      var res = 0;
+      for (arg <- args)
+        res += arg;
+      res
+    }
+    println(sum(1, 2, 3))
 
-
-}
+  }
 }
 
 
